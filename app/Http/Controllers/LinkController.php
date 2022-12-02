@@ -9,19 +9,17 @@ use App\Models\Link;
 class LinkController extends Controller
 {
     public function index() {
+        
         return view('main');
     }
 
     public function store(Request $request) {
+
         $shortcode = Str::random(4);
 
-        // $validated = $request->validate([
-        //     'url' => 'required|url',
-        //     'shortcode' => 'required'
-        // ]);
-        // $request->create($validated);
-
-        // Works without the validation step?
+        $request->validate([
+            'url' => 'required|url',
+        ]);
 
         $link = new Link;
         $link->url = $request->url;
